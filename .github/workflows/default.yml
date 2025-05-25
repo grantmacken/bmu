@@ -1,13 +1,5 @@
 name: Beam Me Up
 on:
-  schedule:
-    - cron: '0 1 * * 1'  #  1am every monday
-  push:
-    branches:
-    - main
-    paths-ignore:
-    - '**/README.md'
-on:
   # schedule:
   #   - cron: '0 1 * * 1'  #  1am every monday
   push:
@@ -25,4 +17,4 @@ jobs:
       - name: Make
         run: |
           make .env
-
+          make default
