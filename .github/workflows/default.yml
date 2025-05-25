@@ -1,0 +1,28 @@
+name: Beam Me Up
+on:
+  schedule:
+    - cron: '0 1 * * 1'  #  1am every monday
+  push:
+    branches:
+    - main
+    paths-ignore:
+    - '**/README.md'
+on:
+  # schedule:
+  #   - cron: '0 1 * * 1'  #  1am every monday
+  push:
+    branches:
+    - main
+    paths-ignore:
+    - '**/README.md'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make
+        run: |
+          make .env
+
