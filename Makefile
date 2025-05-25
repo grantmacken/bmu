@@ -67,7 +67,7 @@ DEPS := gcc gcc-c++ \
 
 build-deps: $(addprefix dep-install-,$(DEPS))
 
-$(addprefix dep-install-,$(COMMON_DEPS)):
+$(addprefix dep-install-,$(DEPS)):
 	@item=$(patsubst dep-install-%,%,$@); \
 	echo "Installing common dependency $$item..."; \
 	buildah run $(WORKING_CONTAINER) dnf install \
