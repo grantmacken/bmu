@@ -38,16 +38,17 @@ default: working
 
 # Create the working container
 working: info/working.md
+	buildah config --env LANG="C.UTF-8" --env CPPFLAGS="-D_DEFAULT_SOURCE" $(WORKING_CONTAINER)
+
+
+info/working.md: 
 	echo '##[ $@ ]##'
 	mkdir -p $(dir $@)
 	printf "$(HEADING2) %s\n\n" "Working Container" | tee $@
 	printf "The Toolbox is built from %s" "$(shell cat latest/fedora-toolbox.json | jq -r '.Labels.name')" | tee -a $@
 	printf ", version %s\n" $(FROM_VERSION) | tee -a $@
 	printf "\nPulled from registry:  %s\n" $(FROM_REGISTRY) | tee -a $@
-	buildah config \
-		--env LANG="C.UTF-8" \
-		--env CPPFLAGS="-D_DEFAULT_SOURCE" \
-		$(WORKING_CONTAINER)
+
 
 
 
